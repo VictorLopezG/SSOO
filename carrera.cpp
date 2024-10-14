@@ -28,7 +28,7 @@ void competir(int distancia, int numero,int seed)
     srand(seed);//semilla aleatoria
     while (distancia > 0)
     {
-        int avance = rand() % 11;//generar avance
+        int avance = rand() % 10 +1;//generar avance
         float espera = float((rand() % 4) + 1) / 10;//tiempo de espera
         distancia -= avance;
         printf("El auto %d avanza %d metros\n", numero, avance);
