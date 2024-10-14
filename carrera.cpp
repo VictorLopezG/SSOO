@@ -27,10 +27,11 @@ void competir(int distancia, int numero)
     while (distancia > 0)
     {
         int avance = rand() % 11;
-        float espera = ((rand() % 4) + 1) / 10;
+        float espera = float((rand() % 4) + 1) / 10;
         distancia -= avance;
         printf("El auto %d avanza %d metros\n", numero, avance);
-        sleep(espera);
+        //printf("El auto %d espera %f segundos\n", numero, espera);
+        sleep(espera*10);
     }
     printf("El auto %d termino la carrera\n", numero);
     myMutex.lock();
