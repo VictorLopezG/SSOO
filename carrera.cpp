@@ -4,6 +4,7 @@
 using namespace std;
 #include <stdlib.h> 
 #include <unistd.h> 
+#include <time.h>
 
 mutex myMutex;
 //Podio para maximo 100 autos
@@ -22,12 +23,13 @@ void subirPodio(int numero)
 }
 
 // cada hebra comienza con esta funcion en la que avanzan y se detienen aleatoreamente
-void competir(int distancia, int numero)
+void competir(int distancia, int numero,int seed)
 {
+    srand(seed);//semilla aleatoria
     while (distancia > 0)
     {
-        int avance = rand() % 11;
-        float espera = float((rand() % 4) + 1) / 10;
+        int avance = rand() % 11;//generar avance
+        float espera = float((rand() % 4) + 1) / 10;//tiempo de espera
         distancia -= avance;
         printf("El auto %d avanza %d metros\n", numero, avance);
         //printf("El auto %d espera %f segundos\n", numero, espera);
@@ -63,7 +65,8 @@ int main(int argc, char *argv[])
     // crear las hebras
     for (int i = 0; i < atoi(argv[2]); i++)
     {
-        autos[i] = new thread(competir, distancia, i + 1);
+        unsigned int seed=time(NULL);
+        autos[i] = new thread(competir, distancia, i + 1,seed+i);
     }
 
     // Para esperar a que la hebras (hijas) terminen.
