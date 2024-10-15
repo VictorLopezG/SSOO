@@ -33,9 +33,9 @@ void competir(int distancia, int numero,int seed)
         distancia -= avance;
         printf("El auto %d avanza %d metros\n", numero, avance);
         //printf("El auto %d espera %f segundos\n", numero, espera);
-        sleep(espera);
+        usleep(espera*100000);
     }
-    printf("El auto %d termino la carrera\n", numero);
+    printf("°°°El auto %d termino la carrera°°°\n", numero);
     myMutex.lock();
     subirPodio(numero);//al terminar la carrera el auto sube al podio
     myMutex.unlock();
