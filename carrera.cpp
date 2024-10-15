@@ -7,8 +7,8 @@ using namespace std;
 #include <time.h>
 
 mutex myMutex;
-//Podio para maximo 100 autos
-int PODIO[100];
+//Declarar el podio para usarlo en las funciones
+int *PODIO;
 
 //cuando un auto termina la carrera sube al podio
 void subirPodio(int numero)
@@ -28,12 +28,12 @@ void competir(int distancia, int numero,int seed)
     srand(seed);//semilla aleatoria
     while (distancia > 0)
     {
-        int avance = rand() % 10 +1;//generar avance
+        int avance = rand() % 10 + 1;//generar avance
         float espera = float((rand() % 4) + 1) / 10;//tiempo de espera
         distancia -= avance;
         printf("El auto %d avanza %d metros\n", numero, avance);
         //printf("El auto %d espera %f segundos\n", numero, espera);
-        sleep(espera*10);
+        sleep(espera);
     }
     printf("El auto %d termino la carrera\n", numero);
     myMutex.lock();
@@ -56,6 +56,9 @@ int main(int argc, char *argv[])
         cout << "La distancia y los autos deben ser > 0\n";
         return -1;
     }
+
+    //inicializar podio
+    PODIO = new int[atoi(argv[2])];
 
     cout << "Iniciando carrera\n";
     thread *autos[atoi(argv[2])]; // crea una hebra por cada auto
@@ -84,5 +87,5 @@ int main(int argc, char *argv[])
     do{
         printf("%d puesto auto: %d\n",i+1,PODIO[i]);
         i++;
-    }while (PODIO[i]!=0);
+    }while (PODIO[i]!=NULL);
 }
