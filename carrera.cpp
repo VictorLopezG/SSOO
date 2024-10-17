@@ -29,13 +29,13 @@ void competir(int distancia, int numero,int seed)
     while (distancia > 0)
     {
         int avance = rand() % 10 + 1;//generar avance
-        float espera = float((rand() % 4) + 1) / 10;//tiempo de espera
+        int espera = (rand() % 400000) + 100000;//tiempo de espera
         distancia -= avance;
         printf("El auto %d avanza %d metros\n", numero, avance);
         //printf("El auto %d espera %f segundos\n", numero, espera);
-        sleep(espera);
+        usleep(espera);
     }
-    printf("El auto %d termino la carrera\n", numero);
+    printf("°°°El auto %d termino la carrera°°°\n", numero);
     myMutex.lock();
     subirPodio(numero);//al terminar la carrera el auto sube al podio
     myMutex.unlock();
@@ -58,7 +58,7 @@ int main(int argc, char *argv[])
     }
 
     //inicializar podio
-    PODIO = new int[atoi(argv[2])];
+    PODIO = new int[atoi(argv[2])]();
 
     cout << "Iniciando carrera\n";
     thread *autos[atoi(argv[2])]; // crea una hebra por cada auto
@@ -76,16 +76,19 @@ int main(int argc, char *argv[])
     for (int i = 0; i < atoi(argv[2]); i++)
     {
         autos[i]->join();
+        delete autos[i];
     }
 
     cout << "Termino la carrera\n";
     cout << "Podio:\n";
-    
+
     //Mostrar estado final del podio
     int i=0;
     
     do{
         printf("%d puesto auto: %d\n",i+1,PODIO[i]);
         i++;
-    }while (PODIO[i]!=NULL);
+    }while (i<atoi(argv[2]));
+
+    return 0;
 }
