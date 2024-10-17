@@ -15,7 +15,7 @@ o
 Usar el archivo Makefile incorporado
 
 
-.[IMPORTANT]
+.[!IMPORTANT]
 
 El archivo espera una distancia y la cantidad de autos, en este orden.
 
