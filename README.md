@@ -4,7 +4,7 @@ La idea de este codigo/mini proyecto es testear el uso de hilos usando el lengua
 
 ## Se recomienda clonar el repositorio
 
-git clone 
+git clone https://github.com/VictorLopezG/SSOO.git
 
 ## Usar el siguiente comando para compilar el proyecto
 
