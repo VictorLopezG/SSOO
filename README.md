@@ -10,4 +10,8 @@ git clone https://github.com/VictorLopezG/SSOO.git
 
 g++ -o carrera.exe -lpthread carrera.cpp
 
+##Advertencia##
+
+El archivo espera una distancia y la cantidad de autos, en este orden.
+
 
