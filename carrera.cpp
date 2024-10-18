@@ -6,6 +6,8 @@ using namespace std;
 #include <unistd.h>
 #include <time.h>
 
+//Autores Victor López y Juan Henriquez
+
 mutex myMutex;
 // Declarar el podio para usarlo en las funciones
 int *PODIO;
