@@ -1,0 +1,21 @@
+prefix = usrlocal
+CC = g++
+
+CFLAGS = -Wall -lpthread
+
+SRC = carrera.cpp
+OBJ = carrera.o
+
+APP = carrera
+
+all $(OBJ)
+        $(CC) $(CFLAGS) -o $(APP) $(OBJ)
+
+clean
+        $(RM) $(OBJ) $(APP)
+
+install $(APP)
+         install -m 0755 $(APP) $(prefix)bin
+
+unistall $(APP)
+        $(RM) $(prefix)bin$(APP)
