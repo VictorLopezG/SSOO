@@ -1,4 +1,4 @@
-prefix = usrlocal
+prefix = /usr/local
 CC = g++
 
 CFLAGS = -Wall -lpthread
@@ -10,12 +10,9 @@ APP = carrera
 
 all $(OBJ)
         $(CC) $(CFLAGS) -o $(APP) $(OBJ)
-
 clean
         $(RM) $(OBJ) $(APP)
-
 install $(APP)
-         install -m 0755 $(APP) $(prefix)bin
-
+        install -m 0755 $(APP) $(prefix)bin
 unistall $(APP)
         $(RM) $(prefix)bin$(APP)
